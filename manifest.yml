@@ -1,0 +1,7 @@
+---
+applications:
+- name: spring-music-pcc
+  memory: 1G
+  random-route: true
+  path: build/libs/spring-music-pcc-1.0.jar
+
