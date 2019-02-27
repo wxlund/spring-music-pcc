@@ -8,7 +8,20 @@ spring:
       security:
         username: pcc
         password: test
-  
+
+---
+# Spring Boot application properties that are applied when the "pcc" Spring profile is enabled with
+#-Dspring.profiles.active=pcc
+# Uses workaround for spring-starter-gemfire security issue. In future versions parse of vcap is not needed.
+spring:
+  profiles: cloud
+  data:
+    gemfire:
+      security:
+        username: ${vcap.services.spring-music-pcc.credentials.users[0].username}
+        password: ${vcap.services.spring-music-pcc.credentials.users[0].password}
+
+---
 management:
   endpoints:
     web:
@@ -24,7 +37,7 @@ spring:
     url: "jdbc:mysql://localhost/music"
     driver-class-name: com.mysql.jdbc.Driver
     username:
-    password: 
+    password:
   jpa:
     generate-ddl: true
     properties:
@@ -40,7 +53,7 @@ spring:
     url: "jdbc:postgresql://localhost/music"
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: 
+    password:
   jpa:
     generate-ddl: true
     properties:
