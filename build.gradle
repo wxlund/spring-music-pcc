@@ -36,10 +36,18 @@ repositories {
 
 dependencies {
     // Spring Boot
-    compile "org.springframework.boot:spring-boot-starter-web"
+    compile ('org.springframework.boot:spring-boot-starter'){
+		exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+	}
+	
+	compile("org.springframework.boot:spring-boot-starter-web"){
+		exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+	}
+	
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.geode:spring-geode-starter:1.0.0.M3"
-
+    compile "org.springframework.boot:spring-boot-starter-log4j2"
+	
     // Spring Cloud Connectors
     compile "org.springframework.cloud:spring-cloud-spring-service-connector:${springCloudConnectorsVersion}"
     compile "org.springframework.cloud:spring-cloud-cloudfoundry-connector:${springCloudConnectorsVersion}"
@@ -66,3 +74,7 @@ jar {
     baseName = "spring-music-pcc"
     version = "" // omit the version from the war file name
 }
+
+configurations.all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
