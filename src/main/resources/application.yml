@@ -2,7 +2,7 @@
 # Spring Boot application properties that are applied when the "pcc" Spring profile is enabled with
 #-Dspring.profiles.active=pcc
 spring:
-  profiles: pcc
+  profiles: pcc-local
   data:
     gemfire:
       security:
@@ -14,7 +14,7 @@ spring:
 #-Dspring.profiles.active=pcc
 # Uses workaround for spring-starter-gemfire security issue. In future versions parse of vcap is not needed.
 spring:
-  profiles: cloud
+  profiles: pcc-cloud
   data:
     gemfire:
       security:
