@@ -12,10 +12,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.init.Jackson2ResourceReader;
 
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class AlbumRepositoryPopulator implements ApplicationListener<ApplicationReadyEvent> {
     private final Jackson2ResourceReader resourceReader;
     private final Resource sourceData;
+    private final AtomicInteger counter = new AtomicInteger(1);
 
     public AlbumRepositoryPopulator() {
         ObjectMapper mapper = new ObjectMapper();
@@ -41,6 +43,8 @@ public class AlbumRepositoryPopulator implements ApplicationListener<Application
         if (entity instanceof Collection) {
             for (Album album : (Collection<Album>) entity) {
                 if (album != null) {
+                    counter.incrementAndGet();
+                    album.setId(counter.toString());
                     repository.save(album);
                 }
             }

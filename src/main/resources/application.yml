@@ -1,8 +1,13 @@
+---
+# Spring Boot application properties that are applied when the "pcc" Spring profile is enabled with
+#-Dspring.profiles.active=pcc
 spring:
-#  jpa:
-#    generate-ddl: true
-  profiles: 
-    active: pcc
+  profiles: pcc
+  data:
+    gemfire:
+      security:
+        username: pcc
+        password: test
   
 management:
   endpoints:
@@ -11,6 +16,8 @@ management:
         include: "*"
 
 ---
+# Spring Boot application properties that are applied when the "mysql" Spring profile is enabled with
+#-Dspring.profiles.active=mysql
 spring:
   profiles: mysql
   datasource:
@@ -25,6 +32,8 @@ spring:
         dialect: org.hibernate.dialect.MySQL55Dialect
 
 ---
+# Spring Boot application properties that are applied when the "postgres" Spring profile is enabled with
+#-Dspring.profiles.active=postgres
 spring:
   profiles: postgres
   datasource:
