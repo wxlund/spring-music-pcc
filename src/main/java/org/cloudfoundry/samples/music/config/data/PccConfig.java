@@ -8,7 +8,6 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 @EnableEntityDefinedRegions(basePackages = "org.cloudfoundry.samples.music.domain")
 @EnableGemfireRepositories(basePackageClasses = org.cloudfoundry.samples.music.repositories.pcc.PccAlbumRepository.class)
 @Configuration
-@Profile("pcc")
 public class PccConfig {
 
 
